@@ -36,7 +36,33 @@ export default function Navbar() {
           {/* Logo */}
           <a href="#" className="flex items-center gap-3 group">
             <div className="w-12 h-12 flex items-center justify-center transition-transform group-hover:scale-105">
-                <img src="/logo.png" alt="حديقة الاستقلال" className="w-full h-full object-contain" />
+                {/* 
+                  يفضل رفع الشعار الأصلي إلى مجلد public باسم logo.png
+                  حتى ذلك الحين، هذا تصميم مقارب للشعار بصيغة SVG 
+                */}
+                <img 
+                  src="/logo.png" 
+                  alt="حديقة الاستقلال" 
+                  className="w-full h-full object-contain"
+                  onError={(e) => {
+                    // Fallback to SVG if logo.png is not found
+                    e.currentTarget.style.display = 'none';
+                    e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                  }}
+                />
+                <svg className="w-10 h-10 text-emerald-600 hidden" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M50 100 Q 50 60 20 60" />
+                  <path d="M50 100 Q 50 60 80 60" />
+                  <path d="M45 100 Q 45 40 10 70" />
+                  <path d="M55 100 Q 55 40 90 70" />
+                  
+                  <path d="M20 40 Q 50 10 80 40" />
+                  <path d="M15 55 Q 50 20 85 55" />
+                  <path d="M25 30 Q 50 0 75 30" />
+                  
+                  <path d="M30 80 Q 50 30 50 10" />
+                  <path d="M70 80 Q 50 30 50 10" />
+                </svg>
             </div>
             <span className={`text-2xl font-bold tracking-tight transition-colors ${isScrolled ? 'text-emerald-950' : 'text-white'}`}>حديقة الاستقلال</span>
           </a>
