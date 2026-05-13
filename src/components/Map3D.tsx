@@ -18,16 +18,16 @@ function Model() {
       {/* Base Plane (Ground) */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.05, 0]} receiveShadow>
         <planeGeometry args={[15, 15]} />
-        <meshStandardMaterial color="#064e3b" roughness={1} metalness={0.1} />
+        <meshStandardMaterial color="#10b981" roughness={1} metalness={0.1} />
       </mesh>
 
       {/* Grid Helper for tech look */}
-      <gridHelper args={[15, 15, "#10b981", "#042f2e"]} position={[0, -0.04, 0]} />
+      <gridHelper args={[15, 15, "#059669", "#a7f3d0"]} position={[0, -0.04, 0]} />
 
       {/* Abstract Mountains / Hills */}
       <mesh position={[-4, 1, -4]} castShadow receiveShadow>
         <dodecahedronGeometry args={[2, 1]} />
-        <meshStandardMaterial color="#065f46" />
+        <meshStandardMaterial color="#059669" />
       </mesh>
       
       <mesh position={[5, 1.5, -4]} castShadow receiveShadow>
@@ -107,11 +107,11 @@ export default function Map3D() {
   };
 
   return (
-    <div className="w-full relative bg-[#042f2e] border border-white/10 rounded-3xl overflow-hidden shadow-2xl h-[500px] lg:h-[700px]">
+    <div className="w-full relative bg-slate-50 border border-emerald-100 rounded-3xl overflow-hidden shadow-[0_30px_60px_-15px_rgba(4,47,46,0.1)] h-[500px] lg:h-[700px]">
       {/* Overlay UI */}
-      <div className="absolute top-6 right-6 z-10 bg-[#022c22]/80 backdrop-blur-md border border-white/10 p-4 rounded-2xl shadow-xl max-w-[200px]">
-        <h3 className="text-white font-bold mb-2">خريطة الحديقة</h3>
-        <p className="text-emerald-400/80 text-xs leading-relaxed mb-4">
+      <div className="absolute top-6 right-6 z-10 bg-white/90 backdrop-blur-md border border-emerald-100 p-4 rounded-2xl shadow-xl max-w-[200px]">
+        <h3 className="text-emerald-950 font-bold mb-2">خريطة الحديقة</h3>
+        <p className="text-emerald-700/80 text-xs leading-relaxed mb-4">
           استخدم الماوس أو اللمس للتحريك. انقر على المؤشرات لعرض التفاصيل.
         </p>
       </div>
@@ -119,14 +119,14 @@ export default function Map3D() {
       <div className="absolute left-6 bottom-6 flex flex-col gap-3 z-10">
         <button 
           onClick={() => handleZoom('in')}
-          className="w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white shadow-lg transition-all hover:scale-105 active:scale-95"
+          className="w-12 h-12 bg-white/90 hover:bg-white backdrop-blur-md border border-emerald-100 rounded-full flex items-center justify-center text-emerald-800 shadow-lg transition-all hover:scale-105 active:scale-95"
           aria-label="تكبير"
         >
           <Plus size={24} />
         </button>
         <button 
           onClick={() => handleZoom('out')}
-          className="w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white shadow-lg transition-all hover:scale-105 active:scale-95"
+          className="w-12 h-12 bg-white/90 hover:bg-white backdrop-blur-md border border-emerald-100 rounded-full flex items-center justify-center text-emerald-800 shadow-lg transition-all hover:scale-105 active:scale-95"
           aria-label="تصغير"
         >
           <Minus size={24} />
@@ -134,17 +134,17 @@ export default function Map3D() {
       </div>
 
       {activeMarker && (
-         <div className="absolute bottom-6 right-6 z-10 bg-[#022c22]/90 backdrop-blur-md border border-emerald-500/30 p-5 rounded-2xl shadow-xl w-64 translate-y-0 transition-transform">
+         <div className="absolute bottom-6 right-6 z-10 bg-white/95 backdrop-blur-md border border-emerald-100 p-5 rounded-2xl shadow-2xl w-64 translate-y-0 transition-transform">
            <div className="flex justify-between items-start mb-2">
-              <h4 className="text-white font-bold text-lg">
+              <h4 className="text-emerald-950 font-bold text-lg">
                 {markers.find(m => m.id === activeMarker)?.label}
               </h4>
            </div>
-           <p className="text-sm text-slate-300 leading-relaxed mb-4">
+           <p className="text-sm text-slate-600 leading-relaxed mb-4">
              منطقة مخصصة لزوار حديقة الاستقلال الوطنية مع كافة التجهيزات اللازمة.
            </p>
            <button 
-              className="w-full py-2 bg-emerald-500/20 text-emerald-400 rounded-lg text-sm font-bold hover:bg-emerald-500 hover:text-[#042f2e] transition-colors"
+              className="w-full py-2 bg-emerald-50 text-emerald-600 rounded-lg text-sm font-bold hover:bg-emerald-100 transition-colors"
               onClick={() => setActiveMarker(null)}
            >
              إغلاق
@@ -154,7 +154,7 @@ export default function Map3D() {
 
       {/* 3D Canvas */}
       <Canvas shadows camera={{ position: [0, 8, 8], fov: 45 }}>
-        <color attach="background" args={['#022c22']} />
+        <color attach="background" args={['#ecfdf5']} />
         
         {/* Lighting */}
         <ambientLight intensity={0.4} />
